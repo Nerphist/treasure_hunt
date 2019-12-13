@@ -16,4 +16,11 @@ class Solver:
 
     def _get_the_path(self) -> str:
         # receiving all needed coordinates from the generator and joining them into result string
-        return ' '.join([str(i) for i in self._treasure_map.follow_the_path()])
+        path = []
+        steps = 0
+        for coordinate in self._treasure_map.follow_the_path():
+            steps += 1
+            path.append(str(coordinate))
+            if steps == len(self._treasure_map) ** 2:
+                return 'The map has no solution'
+        return ' '.join(path)

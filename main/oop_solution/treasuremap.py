@@ -12,12 +12,15 @@ class TreasureMap:
         # copying matrix to ensure we will work with the same matrix we received
         self._matrix = copy.copy(matrix)
 
+    def __len__(self):
+        return len(self._matrix)
+
     def follow_the_path(self):
         while True:
             yield self._current_coordinates.coordinates
             # getting the value from the cell with current coordinates
             new_coordinates = Coordinates(self._matrix[self._current_coordinates.x][
-                self._current_coordinates.y])
+                                              self._current_coordinates.y])
             # if new coordinates are not the same we assign it to current_coordinates for further exploitation
             if new_coordinates != self._current_coordinates:
                 self._current_coordinates = new_coordinates
